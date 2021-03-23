@@ -1,4 +1,6 @@
 package ma.ac.emi.MinuteBrico.Models;
+import java.util.Map;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +27,6 @@ public class Client {
 	@OneToOne
 	private ClientAccount clientAccount;
 	
-	
 	public Client (long id, String firstName, String lastName, String email, String birthday, Byte photo) {
 		super();
 		setClientId(id);
@@ -35,6 +36,21 @@ public class Client {
 		setBirthday(birthday);
 		setPhoto(photo);
 	}
+
+
+	public Client(Map<String, Object> clientMap) {
+		this.clientId = (Long) clientMap.get("clientId");
+		this.firstName =(String) clientMap.get("firstName") ;
+		this.lastName = (String) clientMap.get("lastName");
+		this.email = (String) clientMap.get("email");
+		this.birthday = (String) clientMap.get("birthday");
+		this.photo = (Byte) clientMap.get("photo");
+		this.role =(String) clientMap.get("role") ;
+		this.clientAccount =(ClientAccount) clientMap.get("clientAccount") ;
+
+	}
+
+
 
 
 	public Long getClientId() {

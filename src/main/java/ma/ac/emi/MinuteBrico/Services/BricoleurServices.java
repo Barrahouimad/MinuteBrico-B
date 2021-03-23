@@ -15,23 +15,28 @@ import  ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 //definir les méthodes
 public class BricoleurServices {
 
-	 private final BricoleurRepository bricoleurreppository ;
+	 private final BricoleurRepository bricoleurrepository ;
 	 
 	 public BricoleurServices(BricoleurRepository bricoleurrepository) {
-		 this.bricoleurreppository=bricoleurrepository;
+		 this.bricoleurrepository=bricoleurrepository;
 	 }
 
 		public List<BricoleurModel> findAll() {
-			return  bricoleurreppository.findAll();
+			return  bricoleurrepository.findAll();
 		}
 		public Optional<BricoleurModel> findById(int id) {
-			return bricoleurreppository.findById(id);
+			return bricoleurrepository.findById(id);
 		}
 
-		public List<BricoleurModel> findBySearch(String searchText) {
-			return bricoleurreppository.findByEmailContainingOrFirstNameContainingOrLastNameContaining(searchText,searchText,searchText);
+		public List<BricoleurModel> findBySearch(String searchText,String pass) {
+			return bricoleurrepository.findByEmailAndPassword(searchText,pass);
 		}
-
+        public List<BricoleurModel> findByNomContainingOrPrenomContaining(String text){
+        	return bricoleurrepository.findByFirstNameContainingOrLastNameContaining(text,text);
+        }
+        public BricoleurModel addBricoleur(BricoleurModel bricoleur) {
+        	return bricoleurrepository.save(bricoleur);
+        }
 	 
 	 
 }

@@ -29,7 +29,7 @@ public class BricoleurController {
 		if (searchText == null) {
 			return bricoservice.findAll();
 		}
-		return bricoservice.findBySearch(searchText);
+		return bricoservice.findByNomContainingOrPrenomContaining(searchText);
 
 	}
 	@CrossOrigin()

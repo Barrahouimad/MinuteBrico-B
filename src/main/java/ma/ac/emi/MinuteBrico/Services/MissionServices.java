@@ -41,5 +41,10 @@ public class MissionServices {
 		}
 		return true;
 	}
+
+	public List<Mission> findByEtatMission(int etat) {
+		// TODO Auto-generated method stub
+		return missionRepository.findByEtatMission(etat);
+	}
 	
 }

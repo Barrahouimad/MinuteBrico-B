@@ -15,12 +15,11 @@ import com.sun.istack.NotNull;
 public class ClientAccount {
 
 	@Id
-	private Long id ;
+	private int id ;
 	private String fisrtName;
 	private String lastName;
 	
-	@NotNull
-	private String clientEmail;
+
 	@NotNull
 	private String clientPassword;
 	@Column(length = 256)
@@ -33,13 +32,13 @@ public class ClientAccount {
 	
 	
 	
-	public ClientAccount(Long id, String fisrtName, String lastName, String clientEmail, String clientPassword,
+	public ClientAccount(int id, String fisrtName, String lastName, String clientPassword,
 			String creationDate) {
 		super();
 		this.id = id;
 		this.fisrtName = fisrtName;
 		this.lastName = lastName;
-		this.clientEmail = clientEmail;
+
 		this.clientPassword = clientPassword;
 		this.creationDate = creationDate;
 	}
@@ -53,8 +52,7 @@ public class ClientAccount {
 
 		if (userMap.get("id") != null)
 		
-		this.id = (Long)userMap.get("id");
-		this.clientEmail = (String) userMap.get("clientEmail");
+		this.id = (int)userMap.get("id");
 		this.fisrtName = (String) userMap.get("fisrtName");
 		this.lastName = (String) userMap.get("lastName");
 		this.clientPassword = (String) userMap.get("clientPassword");
@@ -63,13 +61,13 @@ public class ClientAccount {
 
 
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
 
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -96,19 +94,6 @@ public class ClientAccount {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-
-
-	public String getClientEmail() {
-		return clientEmail;
-	}
-
-
-
-	public void setClientEmail(String clientEmail) {
-		this.clientEmail = clientEmail;
-	}
-
 
 
 	public String getClientPassword() {
@@ -138,7 +123,7 @@ public class ClientAccount {
 	@Override
 	public String toString() {
 		return "ClientAccount [id=" + id + ", fisrtName=" + fisrtName + ", lastName=" + lastName + ", clientEmail="
-				+ clientEmail + ", clientPassword=" + clientPassword + ", creationDate=" + creationDate + "]";
+				+  ", clientPassword=" + clientPassword + ", creationDate=" + creationDate + "]";
 	}
 	
 	
