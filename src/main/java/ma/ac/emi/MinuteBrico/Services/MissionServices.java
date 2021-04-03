@@ -13,7 +13,7 @@ import  ma.ac.emi.MinuteBrico.Models.Mission;
 
 @Service
 @Transactional
-public class MissionServices {
+public class  MissionServices {
 
 	private final MissionRepository missionRepository;
 	
@@ -42,9 +42,6 @@ public class MissionServices {
 		return true;
 	}
 
-	public List<Mission> findByEtatMission(int etat) {
-		// TODO Auto-generated method stub
-		return missionRepository.findByEtatMission(etat);
-	}
+
 	
 }

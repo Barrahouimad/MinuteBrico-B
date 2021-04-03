@@ -36,6 +36,9 @@ public class Client {
 		setBirthday(birthday);
 		setPhoto(photo);
 	}
+	public Client() {
+		super();
+	}
 
 
 	public Client(Map<String, Object> clientMap) {

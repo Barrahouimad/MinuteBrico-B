@@ -27,17 +27,6 @@ public class MissionController {
 	public List<Mission> index(){
 		return missionService.findAll();
 	}
-
-	@CrossOrigin
-	@GetMapping("/missionsNonRealisee")
-	public List<Mission> showno(){
-		return missionService.findByEtatMission(1);
-	}
-	@CrossOrigin
-	@GetMapping("/missionsRealisee")
-	public List<Mission> show(){
-		return missionService.findByEtatMission(0);
-	}
 	@CrossOrigin
 	@GetMapping("/missions/{id}")
 	public Optional<Mission> indexById(@PathVariable String id){
