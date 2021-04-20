@@ -29,8 +29,8 @@ public class  MissionServices {
 		return missionRepository.findAll();
 	}
 	
-	public Optional<Mission> findById(int id) {
-		return missionRepository.findById(id);
+	public Mission findById(int id) {
+		return missionRepository.findById(id).get();
 	}
 
 	public boolean deleteById(int id) {

@@ -1,9 +1,15 @@
 package ma.ac.emi.MinuteBrico.Models;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 //modeliser la table et les données de chaque classe
 @Entity
@@ -97,6 +103,7 @@ public class BricoleurModel{
 		   
 	 }
 	
+	
 	@Override
 	public String toString() {
 		return "BricoleurModel [password=" + password + ", domaine=" + domaine + ", getClientId()=" + getClientId()
@@ -114,7 +121,29 @@ public class BricoleurModel{
 		this.domaine = domaine;
 	}
 	
+	@ManyToMany
+	@JoinTable(
+			name="mission_brico",
+			joinColumns=@JoinColumn(name="brico_id"),
+			inverseJoinColumns=@JoinColumn(name="mission_id"))
+	List<Mission> missions;
 	
+	public void addMission(Mission mission) {
+		
+		if (missions == null) {
+			missions = new ArrayList<>();
+		}
+		
+		missions.add(mission);
+		
+
+	}
+	public List<Mission> getMissions() {
+		return missions;
+	}
+	public void setMissions(List<Mission> missions) {
+		this.missions = missions;
+	}	
 	
 	
 }

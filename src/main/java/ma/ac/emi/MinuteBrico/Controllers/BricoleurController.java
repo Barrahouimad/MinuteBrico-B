@@ -34,7 +34,7 @@ public class BricoleurController {
 	}
 	@CrossOrigin()
 	@GetMapping("/bricoleurs/{id}")  
-	public Optional<BricoleurModel> bricoByid(@PathVariable String id) {
+	public BricoleurModel bricoByid(@PathVariable String id) {
 		
 		    int bricoId= Integer.parseInt(id);
 			return bricoservice.findById(bricoId);

@@ -24,8 +24,8 @@ public class BricoleurServices {
 		public List<BricoleurModel> findAll() {
 			return  bricoleurrepository.findAll();
 		}
-		public Optional<BricoleurModel> findById(int id) {
-			return bricoleurrepository.findById(id);
+		public BricoleurModel findById(int id) {
+			return bricoleurrepository.findById(id).get();
 		}
 
 		public List<BricoleurModel> findBySearch(String searchText,String pass) {
