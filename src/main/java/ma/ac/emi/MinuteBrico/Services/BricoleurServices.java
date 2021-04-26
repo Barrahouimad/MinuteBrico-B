@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+
 import  ma.ac.emi.MinuteBrico.Repositories.BricoleurRepository;
 import  ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 
@@ -21,6 +22,9 @@ public class BricoleurServices {
 		 this.bricoleurrepository=bricoleurrepository;
 	 }
 
+	 public Optional<BricoleurModel> findByToken(String token) {
+			return bricoleurrepository.findByToken(token);
+		}
 		public List<BricoleurModel> findAll() {
 			return  bricoleurrepository.findAll();
 		}

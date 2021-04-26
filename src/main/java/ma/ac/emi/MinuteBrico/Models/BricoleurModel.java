@@ -31,11 +31,12 @@ public class BricoleurModel{
 		private String birthday;
 		private Byte photo ;
 		private String role;
+		private String token;
 		public BricoleurModel() {
 			
 		}
 		
-		public BricoleurModel(String firstName,String birthday,String lastName,String password,String email,Byte photo,String ville, int id,String domaine) {
+		public BricoleurModel(String firstName,String token,String birthday,String lastName,String password,String email,Byte photo,String ville, int id,String domaine) {
 			
 		    setId(id);
 			setFirstName(firstName);
@@ -46,7 +47,7 @@ public class BricoleurModel{
 			 setDomaine(domaine);
 			 setPassword(password);
 			 setVille(ville);
-		   
+			 setToken(token);
 	 }
 	
 		public BricoleurModel(Map<String, Object> bricoMap) {
@@ -60,6 +61,7 @@ public class BricoleurModel{
 			this.role =(String) bricoMap.get("role") ;
 			this.ville =(String) bricoMap.get("ville") ;
 			this.domaine =(String) bricoMap.get("domaine") ;
+			this.token =(String) bricoMap.get("token") ;
 
 
 		}
@@ -70,6 +72,15 @@ public class BricoleurModel{
 		public void setId(int id) {
 			this.id = id;
 		}
+		
+		public String getToken() {
+			return token;
+		}
+
+		public void setToken(String token) {
+			this.token = token;
+		}
+
 		public String getVille() {
 			return ville;
 		}

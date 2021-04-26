@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 import ma.ac.emi.MinuteBrico.Models.Categorie;
@@ -60,4 +62,19 @@ public class BricoleurController {
 
 	}
 	
+	@CrossOrigin()
+	@PutMapping("/bricoleurup/{token}")
+	public BricoleurModel updateadd(@PathVariable String token, @RequestBody BricoleurModel body) {
+		Optional<BricoleurModel> bricoleur = bricoservice.findByToken(token);
+		if (bricoleur.isPresent()) {
+			BricoleurModel b = bricoleur.get();
+			b.setPhoto(body.getPhoto());
+			b.setFirstName(body.getFirstName());
+			b.setLastName(body.getLastName());
+			
+
+			return bricoservice.addBricoleur(b);
+		}
+		return null;
+	}
 }
