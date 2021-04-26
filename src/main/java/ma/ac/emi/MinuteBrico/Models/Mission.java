@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 
 @Entity
@@ -37,7 +39,7 @@ public class Mission {
 	public Mission(int iDMission, String titre_mission, String state, String adresse, int etat_mission, String images,
 			String ville, int interval_temps, String mission_description,  Date date, int zip_code,
 			int bricoleur_choisi, List<Categorie> categories, List<BricoleurModel> bricoleurs) {
-		IDMission = iDMission;
+		this.id = iDMission;
 		this.titre_mission = titre_mission;
 		this.state = state;
 		this.adresse = adresse;
@@ -60,7 +62,7 @@ public class Mission {
 	public Mission(Map<String,Object> userMap) {
 		if (userMap.get("id") != null)	
 			
-		this.IDMission = (int )userMap.get("id");
+		this.id = (int )userMap.get("id");
 		this.state = (String) userMap.get("state");
 		this.titre_mission = (String) userMap.get("titre_mission");
 		this.interval_temps = (int) userMap.get("interval_temps");
@@ -76,7 +78,7 @@ public class Mission {
 	
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
-		private int IDMission;
+		private int id;
 		private String titre_mission;
 		private String state;
 		private String adresse;
@@ -94,7 +96,7 @@ public class Mission {
 private List<Categorie> categories;
 
 
-
+@JsonManagedReference
 @ManyToMany
 @JoinTable(
 		name="mission_brico",
@@ -131,15 +133,15 @@ public void add(Categorie cat) {
 
 
 
-public int getIDMission() {
-	return IDMission;
+public int getID() {
+	return id;
 }
 
 
 
 
-public void setIDMission(int iDMission) {
-	IDMission = iDMission;
+public void setID(int iDMission) {
+	id = iDMission;
 }
 
 

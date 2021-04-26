@@ -16,7 +16,7 @@ public class Client {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long clientId ;
+	private int id ;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -24,12 +24,11 @@ public class Client {
 	private Byte photo ;
 	private String role;
 	
-	@OneToOne
-	private ClientAccount clientAccount;
+
 	
-	public Client (long id, String firstName, String lastName, String email, String birthday, Byte photo) {
+	public Client (int id, String firstName, String lastName, String email, String birthday, Byte photo) {
 		super();
-		setClientId(id);
+		setId(id);
 		setFirstName(firstName);
 		setLastName(lastName);
 		setEmail(email);
@@ -42,27 +41,28 @@ public class Client {
 
 
 	public Client(Map<String, Object> clientMap) {
-		this.clientId = (Long) clientMap.get("clientId");
+		if(clientMap.get("id")!=null)
+		this.id = (int) clientMap.get("id");
 		this.firstName =(String) clientMap.get("firstName") ;
 		this.lastName = (String) clientMap.get("lastName");
 		this.email = (String) clientMap.get("email");
 		this.birthday = (String) clientMap.get("birthday");
 		this.photo = (Byte) clientMap.get("photo");
 		this.role =(String) clientMap.get("role") ;
-		this.clientAccount =(ClientAccount) clientMap.get("clientAccount") ;
+	
 
 	}
 
 
 
 
-	public Long getClientId() {
-		return clientId;
+	public int getId() {
+		return id;
 	}
 
 
-	public void setClientId(Long clientId) {
-		this.clientId = clientId;
+	public void setId(int clientId) {
+		this.id = clientId;
 	}
 
 
@@ -126,21 +126,14 @@ public class Client {
 	}
 
 
-	public ClientAccount getClientAccount() {
-		return clientAccount;
-	}
 
-
-	public void setClientAccount(ClientAccount clientAccount) {
-		this.clientAccount = clientAccount;
-	}
 
 
 	@Override
 	public String toString() {
-		return "Client [clientId=" + clientId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + ", birthday=" + birthday + ", photo=" + photo + ", role=" + role + ", clientAccount="
-				+ clientAccount + "]";
+		return "Client [clientId=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
+				+ email + ", birthday=" + birthday + ", photo=" + photo + ", role=" + role 
+				;
 	}
 
 

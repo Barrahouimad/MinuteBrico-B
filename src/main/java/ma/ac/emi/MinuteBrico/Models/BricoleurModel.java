@@ -6,18 +6,23 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 //modeliser la table et les données de chaque classe
 @Entity
 @Table(name="Bricoleur")
 public class BricoleurModel{
-	 @Id
-	     private int id;
-		 private String password;
+	    @Id
+		@GeneratedValue(strategy=GenerationType.AUTO)
+	    private int id;
+		private String password;
 		private Long clientId ;
 		private String ville;
 		private String firstName;
@@ -29,7 +34,37 @@ public class BricoleurModel{
 		public BricoleurModel() {
 			
 		}
-	 public int getId() {
+		
+		public BricoleurModel(String firstName,String birthday,String lastName,String password,String email,Byte photo,String ville, int id,String domaine) {
+			
+		    setId(id);
+			setFirstName(firstName);
+			setLastName(lastName);
+			setEmail(email);
+			setBirthday(birthday);
+			setPhoto(photo);
+			 setDomaine(domaine);
+			 setPassword(password);
+			 setVille(ville);
+		   
+	 }
+	
+		public BricoleurModel(Map<String, Object> bricoMap) {
+			if(bricoMap.get("id")!=null)
+			this.id = (int) bricoMap.get("id");
+			this.firstName =(String) bricoMap.get("firstName") ;
+			this.lastName = (String) bricoMap.get("lastName");
+			this.email = (String) bricoMap.get("email");
+			this.birthday = (String) bricoMap.get("birthday");
+			this.photo = (Byte) bricoMap.get("photo");
+			this.role =(String) bricoMap.get("role") ;
+			this.ville =(String) bricoMap.get("ville") ;
+			this.domaine =(String) bricoMap.get("domaine") ;
+
+
+		}
+		
+	    public int getId() {
 			return id;
 		}
 		public void setId(int id) {
@@ -89,21 +124,9 @@ public class BricoleurModel{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public BricoleurModel(String firstName,String birthday,String lastName,String password,String email,Byte photo,String ville, int id,String domaine) {
-		
-		    setId(id);
-			setFirstName(firstName);
-			setLastName(lastName);
-			setEmail(email);
-			setBirthday(birthday);
-			setPhoto(photo);
-		 setDomaine(domaine);
-		 setPassword(password);
-		 setVille(ville);
-		   
-	 }
+
 	
-	
+
 	@Override
 	public String toString() {
 		return "BricoleurModel [password=" + password + ", domaine=" + domaine + ", getClientId()=" + getClientId()
@@ -120,7 +143,7 @@ public class BricoleurModel{
 	public void setDomaine(String domaine) {
 		this.domaine = domaine;
 	}
-	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(
 			name="mission_brico",

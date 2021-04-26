@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import ma.ac.emi.MinuteBrico.Models.Client;
 import ma.ac.emi.MinuteBrico.Models.ClientAccount;
 import ma.ac.emi.MinuteBrico.Services.AccountClientServices;
 import ma.ac.emi.MinuteBrico.Services.ClientServices;
 
-@Controller
+@RestController
 public class ClientController {
 
 	 private ClientServices clientServices;
