@@ -13,6 +13,7 @@ import  ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 public interface BricoleurRepository extends JpaRepository<BricoleurModel,Integer> {
 	List<BricoleurModel> findByEmailContainingOrPassword(String email, String password);
     List<BricoleurModel> findByEmailAndPassword(String email,String password);
-	Optional<BricoleurModel> findByToken(String token);
+      BricoleurModel findByToken(String token);
 	List<BricoleurModel> findByFirstNameContainingOrLastNameContaining(String nom,String prenom);
+	
 }

@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 //modeliser la table et les données de chaque classe
 @Entity
 @Table(name="Bricoleur")
@@ -154,7 +155,8 @@ public class BricoleurModel{
 	public void setDomaine(String domaine) {
 		this.domaine = domaine;
 	}
-	@JsonBackReference
+	@JsonManagedReference
+
 	@ManyToMany
 	@JoinTable(
 			name="mission_brico",

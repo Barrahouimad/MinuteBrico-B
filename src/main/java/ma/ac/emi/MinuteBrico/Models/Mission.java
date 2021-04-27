@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -96,7 +97,7 @@ public class Mission {
 private List<Categorie> categories;
 
 
-@JsonManagedReference
+@JsonBackReference
 @ManyToMany
 @JoinTable(
 		name="mission_brico",

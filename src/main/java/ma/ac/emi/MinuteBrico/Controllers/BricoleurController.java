@@ -40,6 +40,14 @@ public class BricoleurController {
 
 	}
 	@CrossOrigin()
+	@GetMapping("/bricoleursCheck/{password}/{email}")
+	public List<BricoleurModel> indexCheck(@PathVariable String password,@PathVariable String email) {
+		
+		return bricoservice.findByEmailAndPassword(email,password);
+
+	}
+	
+	@CrossOrigin()
 	@GetMapping("/bricoleurs/{id}")  
 	public BricoleurModel bricoByid(@PathVariable String id) {
 		
@@ -65,16 +73,22 @@ public class BricoleurController {
 	@CrossOrigin()
 	@PutMapping("/bricoleurup/{token}")
 	public BricoleurModel updateadd(@PathVariable String token, @RequestBody BricoleurModel body) {
-		Optional<BricoleurModel> bricoleur = bricoservice.findByToken(token);
-		if (bricoleur.isPresent()) {
-			BricoleurModel b = bricoleur.get();
+		BricoleurModel bricoleur = bricoservice.findByToken(token);
+
+			BricoleurModel b = bricoleur;
 			b.setPhoto(body.getPhoto());
 			b.setFirstName(body.getFirstName());
 			b.setLastName(body.getLastName());
 			
 
 			return bricoservice.addBricoleur(b);
-		}
-		return null;
+	
+	}
+	@CrossOrigin()
+	@GetMapping("/bricoleurtoken/{token}")
+	public BricoleurModel get(@PathVariable String token) {
+		
+		
+		return bricoservice.findByToken(token);
 	}
 }

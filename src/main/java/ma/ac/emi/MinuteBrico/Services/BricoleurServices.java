@@ -22,7 +22,7 @@ public class BricoleurServices {
 		 this.bricoleurrepository=bricoleurrepository;
 	 }
 
-	 public Optional<BricoleurModel> findByToken(String token) {
+	 public BricoleurModel findByToken(String token) {
 			return bricoleurrepository.findByToken(token);
 		}
 		public List<BricoleurModel> findAll() {
@@ -41,6 +41,8 @@ public class BricoleurServices {
         public BricoleurModel addBricoleur(BricoleurModel bricoleur) {
         	return bricoleurrepository.save(bricoleur);
         }
-	 
-	 
+        
+        public List<BricoleurModel> findByEmailAndPassword(String password,String email) {
+        	return bricoleurrepository.findByEmailAndPassword(email,password);
+        }
 }
