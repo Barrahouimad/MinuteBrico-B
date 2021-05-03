@@ -58,7 +58,17 @@ public class BricoleurController {
 
 	}
 	
+
 	@CrossOrigin()
+	@PostMapping("/bricoleurscertif")
+	public String create(@RequestBody BricoleurModel bricoMap) {
+		
+		bricoservice.addBricoleur(bricoMap);
+		return  "brico ajouté";
+
+	}
+	
+	/*@CrossOrigin()
 	@PostMapping("/bricoleurs")
 	public String create(@RequestBody Map<String, Object> bricoMap) {
 		
@@ -68,7 +78,7 @@ public class BricoleurController {
 		bricoservice.addBricoleur(bricoleur);
 		return  "brico ajouté";
 
-	}
+	}*/
 	
 	@CrossOrigin()
 	@PutMapping("/bricoleurup/{token}")

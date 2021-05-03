@@ -1,36 +1,125 @@
 package ma.ac.emi.MinuteBrico.Models;
+
+import java.io.Serializable;
+import java.util.Map;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Diplomes")
-public class Diplomes {
+@Table(name = "Diplome")
+public class Diplomes implements Serializable {
 
-	 public Diplomes(int id, byte photo) {
-		 setId(id);
-		 setPhoto(photo);
-	 }
-	 public Diplomes() {
-		 
-	 }
+    /**
+	 * @author iliass Alilou
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	private byte photo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int Id;
+	private String school;
+	private String annee_entre;
+	private String annee_sortie;
+	private String diplome;
+	private String domaine;
+	private String descrition;
+	
+	public Diplomes() {
+		
+	}
+	
+	public Diplomes(String school, String annee_entre, String annee_sortie, String diplome, String domaine,
+			String descrition) {
+		super();
+		this.school = school;
+		this.annee_entre = annee_entre;
+		this.annee_sortie = annee_sortie;
+		this.diplome = diplome;
+		this.domaine = domaine;
+		this.descrition = descrition;
+	}
+	
+	 public Diplomes(Map<String,Object> diplomeMap) {
+			if (diplomeMap.get("id") != null)	
+				
+			this.Id = (int )diplomeMap.get("Id");
+			this.school = (String) diplomeMap.get("school");
+			this.annee_entre = (String) diplomeMap.get("annee_entre");
+			this.annee_sortie = (String) diplomeMap.get("annee_sortie");
+			this.diplome = (String) diplomeMap.get("diplome");
+			this.domaine = (String) diplomeMap.get("domaine");
+			this.descrition = (String) diplomeMap.get("descrition");
+			
+			
+		}
+	
+
 	public int getId() {
-		return id;
+		return Id;
 	}
+
 	public void setId(int id) {
-		this.id = id;
+		Id = id;
 	}
-	public byte getPhoto() {
-		return photo;
+
+	public String getSchool() {
+		return school;
 	}
-	public void setPhoto(byte photo) {
-		this.photo = photo;
+
+	public void setSchool(String school) {
+		this.school = school;
 	}
+
+	public String getAnnee_entre() {
+		return annee_entre;
+	}
+
+	public void setAnnee_entre(String annee_entre) {
+		this.annee_entre = annee_entre;
+	}
+
+	public String getAnnee_sortie() {
+		return annee_sortie;
+	}
+
+	public void setAnnee_sortie(String annee_sortie) {
+		this.annee_sortie = annee_sortie;
+	}
+
+	public String getDiplome() {
+		return diplome;
+	}
+
+	public void setDiplome(String diplome) {
+		this.diplome = diplome;
+	}
+
+	public String getDomaine() {
+		return domaine;
+	}
+
+	public void setDomaine(String domaine) {
+		this.domaine = domaine;
+	}
+
+	public String getDescrition() {
+		return descrition;
+	}
+
+	public void setDescrition(String descrition) {
+		this.descrition = descrition;
+	}
+
+	@Override
+	public String toString() {
+		return "Diplomes [Id=" + Id + ", school=" + school + ", annee_entre=" + annee_entre + ", annee_sortie="
+				+ annee_sortie + ", diplome=" + diplome + ", domaine=" + domaine + ", descrition=" + descrition + "]";
+	}
+	
+	
 	
 }
