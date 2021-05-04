@@ -16,7 +16,7 @@ public class Certification implements Serializable {
     
 	private static final long serialVersionUID = 1L;
 	@Id
-	   @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int Id;	
 	private String name_certification;
 	private String name_centre;

@@ -1,10 +1,11 @@
 package ma.ac.emi.MinuteBrico.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.tomcat.util.http.parser.MediaType;
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +13,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 import ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 import ma.ac.emi.MinuteBrico.Models.Categorie;
+import ma.ac.emi.MinuteBrico.Models.Certification;
+import ma.ac.emi.MinuteBrico.Models.Diplomes;
+import ma.ac.emi.MinuteBrico.Models.Langues;
 import ma.ac.emi.MinuteBrico.Models.Mission;
 import  ma.ac.emi.MinuteBrico.Services.BricoleurServices;
 
@@ -61,18 +67,7 @@ public class BricoleurController {
 
 	}
 	
-
 	@CrossOrigin()
-	@PostMapping("/bricoleurscertif" )
-
-	public String create(@RequestBody BricoleurModel bricoMap) {
-		
-		bricoservice.addBricoleur(bricoMap);
-		return  "brico ajouté";
-
-	}
-	
-	/*@CrossOrigin()
 	@PostMapping("/bricoleurs")
 	public String create(@RequestBody Map<String, Object> bricoMap) {
 		
@@ -82,7 +77,47 @@ public class BricoleurController {
 		bricoservice.addBricoleur(bricoleur);
 		return  "brico ajouté";
 
-	}*/
+	}
+
+	@CrossOrigin()
+	@PostMapping("/bricoleurscertif")
+	public String createwithcertif(@RequestBody Map<String, Object> bricoMap) {
+		BricoleurModel bricoleur = new BricoleurModel(bricoMap);		   
+		
+		for(int i=0;i<((List<Categorie>) (bricoMap).get("Categorie")).size();i++) {
+				
+			Categorie exl = new Categorie((((List<Map<String, Object>>) (bricoMap).get("Categorie")).get(i)));
+			
+			bricoleur.addCategorie(exl);
+
+		}
+		for(int i=0;i<((List<Certification>) (bricoMap).get("Certification")).size();i++) {
+			
+			Certification exl = new Certification((((List<Map<String, Object>>) (bricoMap).get("Certification")).get(i)));
+			
+			bricoleur.addCertification(exl);
+
+		}
+		for(int i=0;i<((List<Diplomes>) (bricoMap).get("Diplomes")).size();i++) {
+			
+			Diplomes exl = new Diplomes((((List<Map<String, Object>>) (bricoMap).get("Diplomes")).get(i)));
+			
+			bricoleur.addDiplomes(exl);
+
+		}
+		for(int i=0;i<((List<Langues>) (bricoMap).get("Langues")).size();i++) {
+			
+			Langues exl = new Langues((((List<Map<String, Object>>) (bricoMap).get("Langues")).get(i)));
+			
+			bricoleur.addLangues(exl);
+
+		}
+		
+	
+		bricoservice.addBricoleur(bricoleur);
+		return "Brico ajouté" ;
+
+	}
 	
 	@CrossOrigin()
 	@PutMapping("/bricoleurup/{token}")

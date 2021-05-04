@@ -1,5 +1,4 @@
 package ma.ac.emi.MinuteBrico.Models;
-import java.io.Serializable;
 import java.util.Map;
 
 import javax.persistence.Entity;
@@ -15,7 +14,7 @@ public class Categorie{
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;    
 	private String nom;
 	
@@ -26,15 +25,19 @@ public class Categorie{
 	public Categorie(String nom) {
 		super();
 		this.nom = nom;
+		
+	}
+	public Categorie(String nom,int id) {
+		super();
+		this.nom = nom;
+		this.id=id;
 	}
 	 public Categorie(Map<String,Object> CategorieMap) {
 			if (CategorieMap.get("id") != null)	
 				
 			this.id = (int )CategorieMap.get("id");
-			this.nom = (String )CategorieMap.get("name");
-
-			
-		}
+			this.nom = (String )CategorieMap.get("nom");
+         }
 
 
 	public int getId() {

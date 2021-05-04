@@ -19,14 +19,14 @@ public class Diplomes implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int Id;
 	private String school;
 	private String annee_entre;
 	private String annee_sortie;
 	private String diplome;
 	private String domaine;
-	private String descrition;
+	private String description;
 	
 	public Diplomes() {
 		
@@ -40,7 +40,7 @@ public class Diplomes implements Serializable {
 		this.annee_sortie = annee_sortie;
 		this.diplome = diplome;
 		this.domaine = domaine;
-		this.descrition = descrition;
+		this.description = descrition;
 	}
 	
 	 public Diplomes(Map<String,Object> diplomeMap) {
@@ -52,7 +52,7 @@ public class Diplomes implements Serializable {
 			this.annee_sortie = (String) diplomeMap.get("annee_sortie");
 			this.diplome = (String) diplomeMap.get("diplome");
 			this.domaine = (String) diplomeMap.get("domaine");
-			this.descrition = (String) diplomeMap.get("descrition");
+			this.description = (String) diplomeMap.get("descrition");
 			
 			
 		}
@@ -106,18 +106,18 @@ public class Diplomes implements Serializable {
 		this.domaine = domaine;
 	}
 
-	public String getDescrition() {
-		return descrition;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescrition(String descrition) {
-		this.descrition = descrition;
+	public void setDescription(String descrition) {
+		this.description = descrition;
 	}
 
 	@Override
 	public String toString() {
 		return "Diplomes [Id=" + Id + ", school=" + school + ", annee_entre=" + annee_entre + ", annee_sortie="
-				+ annee_sortie + ", diplome=" + diplome + ", domaine=" + domaine + ", descrition=" + descrition + "]";
+				+ annee_sortie + ", diplome=" + diplome + ", domaine=" + domaine + ", descrition=" + description + "]";
 	}
 	
 	
