@@ -117,6 +117,16 @@ List<Mission> missions;
 	}
 
 
+	public List<Mission> getMissions() {
+		return missions;
+	}
+
+
+	public void setMissions(List<Mission> missions) {
+		this.missions = missions;
+	}
+
+
 	public String getLastName() {
 		return lastName;
 	}

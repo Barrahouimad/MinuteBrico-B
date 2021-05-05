@@ -6,12 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.ac.emi.MinuteBrico.Models.Client;
 import ma.ac.emi.MinuteBrico.Models.ClientAccount;
+import ma.ac.emi.MinuteBrico.Models.Mission;
 import ma.ac.emi.MinuteBrico.Repositories.ClientRepository;
 import ma.ac.emi.MinuteBrico.Services.AccountClientServices;
 import ma.ac.emi.MinuteBrico.Services.ClientServices;
@@ -38,6 +40,11 @@ public class ClientController {
 	 clientrepository.save(client);
 	 return "Client Ajouté";
  }
-
+ @CrossOrigin()	
+ @GetMapping("/Client/{id}")
+ public List<Mission> showMissions(@PathVariable int id) {
+	
+	 return  clientServices.findById(id).getMissions();
+ }
  
 }
