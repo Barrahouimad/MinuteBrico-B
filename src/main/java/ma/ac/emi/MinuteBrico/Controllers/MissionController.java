@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import ma.ac.emi.MinuteBrico.Services.BricoleurServices;
+
+import ma.ac.emi.MinuteBrico.Services.ClientServices;
 import ma.ac.emi.MinuteBrico.Services.MissionServices;
 import ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 import ma.ac.emi.MinuteBrico.Models.Categorie;
@@ -29,6 +30,9 @@ public class MissionController {
 	@Autowired
 	  private BricoleurServices bricoleurServices;
 	
+	@Autowired
+	  private ClientServices ClientServices;
+	
 	@CrossOrigin
 	@GetMapping("/missions")
 	public List<Mission> index(){
@@ -41,6 +45,24 @@ public class MissionController {
 		return missionService.findById(missionId);
 		
 	}
+	@CrossOrigin()
+	@PostMapping("/missions/{id}")
+	public int createwithId(@RequestBody Map<String, Object> missionMap,@PathVariable int id) {
+		
+		System.out.println(missionMap);
+		Mission mission = new Mission(missionMap);
+		Categorie cat;
+		
+		for(String titre : (List<String>) (missionMap).get("titre")) {
+				cat =new Categorie(titre);
+				mission.add(cat);
+		}
+		mission.missionAddClient(ClientServices.findById(id));
+		missionService.savemission(mission);
+		return  ((List<String>) (missionMap).get("titre")).size();
+
+	}
+	
 	@CrossOrigin()
 	@PostMapping("/missions")
 	public int create(@RequestBody Map<String, Object> missionMap) {

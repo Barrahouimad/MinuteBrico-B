@@ -105,14 +105,14 @@ public class BricoleurController {
 			bricoleur.addDiplomes(exl);
 
 		}
-		for(int i=0;i<((List<Langues>) (bricoMap).get("Langues")).size();i++) {
+	/*	for(int i=0;i<((List<Langues>) (bricoMap).get("Langues")).size();i++) {
 			
 			Langues exl = new Langues((((List<Map<String, Object>>) (bricoMap).get("Langues")).get(i)));
 			
 			bricoleur.addLangues(exl);
 
 		}
-		
+		*/
 	
 		bricoservice.addBricoleur(bricoleur);
 		return "Brico ajouté" ;

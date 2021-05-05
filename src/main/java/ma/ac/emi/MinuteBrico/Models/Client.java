@@ -1,10 +1,15 @@
 package ma.ac.emi.MinuteBrico.Models;
+import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,18 +28,32 @@ public class Client {
 	private String birthday;
 	private Byte photo ;
 	private String role;
+	private String token;
+	private String password;
+	
+@OneToMany(fetch=FetchType.EAGER,
+mappedBy="client",
+cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+			 CascadeType.DETACH, CascadeType.REFRESH})
+List<Mission> missions;
 	
 
-	
-	public Client (int id, String firstName, String lastName, String email, String birthday, Byte photo) {
-		super();
-		setId(id);
-		setFirstName(firstName);
-		setLastName(lastName);
-		setEmail(email);
-		setBirthday(birthday);
-		setPhoto(photo);
+
+
+	public Client(int id, String firstName, String lastName, String email, String birthday, Byte photo, String role,
+			String token, String password) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.birthday = birthday;
+		this.photo = photo;
+		this.role = role;
+		this.token = token;
+		this.password = password;
 	}
+
+
 	public Client() {
 		super();
 	}
@@ -49,7 +68,9 @@ public class Client {
 		this.birthday = (String) clientMap.get("birthday");
 		this.photo = (Byte) clientMap.get("photo");
 		this.role =(String) clientMap.get("role") ;
-	
+		this.token =(String) clientMap.get("token") ;
+		this.password =(String) clientMap.get("password") ;
+
 
 	}
 
@@ -63,6 +84,26 @@ public class Client {
 
 	public void setId(int clientId) {
 		this.id = clientId;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 

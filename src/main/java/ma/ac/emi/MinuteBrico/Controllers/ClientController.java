@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ma.ac.emi.MinuteBrico.Models.Client;
 import ma.ac.emi.MinuteBrico.Models.ClientAccount;
+import ma.ac.emi.MinuteBrico.Repositories.ClientRepository;
 import ma.ac.emi.MinuteBrico.Services.AccountClientServices;
 import ma.ac.emi.MinuteBrico.Services.ClientServices;
 
@@ -19,7 +20,11 @@ import ma.ac.emi.MinuteBrico.Services.ClientServices;
 public class ClientController {
 
 	 private ClientServices clientServices;
-	 private AccountClientServices accountClientServices;
+		private final ClientRepository clientrepository ;
+		public ClientController(ClientRepository clientRepo) {
+			this.clientrepository=clientRepo;
+		}
+		
  @CrossOrigin()	
  @GetMapping("/Client")
  public List<Client> show() {
@@ -30,17 +35,9 @@ public class ClientController {
 @PostMapping("/Client")
  public String addClient(@RequestBody Map<String,Object> clientMap) {
 	 Client client=new Client(clientMap);
-	 ClientAccount aClient=new ClientAccount(clientMap);
-	 clientServices.saveClient(client);
-	 accountClientServices.addAccountClient(aClient);
+	 clientrepository.save(client);
 	 return "Client Ajouté";
  }
- 
- @CrossOrigin()
- @DeleteMapping("/Client")
- public String deleteaccount(@RequestBody int id){
-	  accountClientServices.deleteAccount(id);
-	  return "Compte supprimé";
- }
+
  
 }

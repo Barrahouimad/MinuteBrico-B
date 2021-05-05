@@ -33,7 +33,7 @@ public class BricoleurModel{
 		private String lastName;
 		private String email;
 		private String birthday;
-		private Byte photo ;
+		private String photo ;
 		private String role;
 		private String token;
 		@OneToMany(cascade = CascadeType.ALL)
@@ -62,7 +62,7 @@ public class BricoleurModel{
 
 
 		public BricoleurModel(int id, String password, Long clientId, String ville, String firstName, String lastName,
-				String email, String birthday, Byte photo, String role, String token,
+				String email, String birthday, String photo, String role, String token,
 				List<Certification> certifications,
 				List<Diplomes> diplomes,
 				List<Langues> langues, List<Categorie> categorie, String domaine,
@@ -102,7 +102,7 @@ public class BricoleurModel{
 			this.lastName = (String) bricoMap.get("lastName");
 			this.email = (String) bricoMap.get("email");
 			this.birthday = (String) bricoMap.get("birthday");
-			this.photo = (Byte) bricoMap.get("photo");
+			this.photo = (String) bricoMap.get("photo");
 			this.role =(String) bricoMap.get("role") ;
 			this.ville =(String) bricoMap.get("ville") ;
 			this.domaine =(String) bricoMap.get("domaine") ;
@@ -208,10 +208,10 @@ public class BricoleurModel{
 		public void setBirthday(String birthday) {
 			this.birthday = birthday;
 		}
-		public Byte getPhoto() {
+		public String getPhoto() {
 			return photo;
 		}
-		public void setPhoto(Byte photo) {
+		public void setPhoto(String photo) {
 			this.photo = photo;
 		}
 		public String getRole() {

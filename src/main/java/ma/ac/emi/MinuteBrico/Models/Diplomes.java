@@ -32,18 +32,22 @@ public class Diplomes implements Serializable {
 		
 	}
 	
-	public Diplomes(String school, String annee_entre, String annee_sortie, String diplome, String domaine,
-			String descrition) {
-		super();
+	
+	
+	 public Diplomes(int id, String school, String annee_entre, String annee_sortie, String diplome, String domaine,
+			String description) {
+		Id = id;
 		this.school = school;
 		this.annee_entre = annee_entre;
 		this.annee_sortie = annee_sortie;
 		this.diplome = diplome;
 		this.domaine = domaine;
-		this.description = descrition;
+		this.description = description;
 	}
-	
-	 public Diplomes(Map<String,Object> diplomeMap) {
+
+
+
+	public Diplomes(Map<String,Object> diplomeMap) {
 			if (diplomeMap.get("id") != null)	
 				
 			this.Id = (int )diplomeMap.get("Id");

@@ -1,6 +1,7 @@
 package ma.ac.emi.MinuteBrico.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,10 @@ public class ClientServices {
 	public List<Client> findByEmail(String email){
 		return clientrepository.findByEmail(email);
 	}
+	public Client findById(int id){
+		return clientrepository.findById(id);
+	}
+	
 	public Client saveClient(Client client) {
 		return clientrepository.save(client);
 	}

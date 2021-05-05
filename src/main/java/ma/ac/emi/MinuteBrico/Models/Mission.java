@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -75,6 +76,7 @@ public class Mission {
 		this.zip_code=(int) userMap.get("zip_code");
 		this.date=(Date) userMap.get("date");
 		this.categories=(List<Categorie>) userMap.get("categories");
+
 	}
 	
 		@Id
@@ -91,7 +93,13 @@ public class Mission {
 		private Date date;
 		private int zip_code;
 		private int bricoleur_choisi;
-
+        private int idmission=0;
+        @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+						 CascadeType.DETACH, CascadeType.REFRESH})
+        @JoinColumn(name="Client_id")
+        private Client client;
+        
+        
 @OneToMany(cascade=CascadeType.ALL)
 @JoinColumn(name="mission_id")
 private List<Categorie> categories;
@@ -134,15 +142,33 @@ public void add(Categorie cat) {
 
 
 
-public int getID() {
+
+
+
+
+public int getId() {
 	return id;
 }
 
 
 
 
-public void setID(int iDMission) {
-	id = iDMission;
+public void setId(int id) {
+	this.id = id;
+}
+
+
+
+
+public Client getClient() {
+	return client;
+}
+
+
+
+
+public void setClient(Client client) {
+	this.client = client;
 }
 
 
@@ -325,6 +351,9 @@ public void setCategories(List<Categorie> categories) {
 	this.categories = categories;
 }
 
-
+public void missionAddClient(Client clientt) {
+	
+	setClient(clientt);
+}
 
 }
