@@ -49,7 +49,7 @@ public class BricoleurController {
 
 	}
 	@CrossOrigin()
-	@GetMapping("/bricoleursCheck/{password}/{email}")
+	@GetMapping("/bricoleursCheck/{email}/{password}")
 	public List<BricoleurModel> indexCheck(@PathVariable String password,@PathVariable String email) {
 		
 		return bricoservice.findByEmailAndPassword(email,password);

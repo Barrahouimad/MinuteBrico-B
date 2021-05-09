@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 import ma.ac.emi.MinuteBrico.Models.Client;
 import ma.ac.emi.MinuteBrico.Models.ClientAccount;
 import ma.ac.emi.MinuteBrico.Models.Mission;
@@ -41,10 +42,26 @@ public class ClientController {
 	 return "Client Ajouté";
  }
  @CrossOrigin()	
- @GetMapping("/Client/{id}")
+ @GetMapping("/MissionClient/{id}")
  public List<Mission> showMissions(@PathVariable int id) {
 	
-	 return  clientServices.findById(id).getMissions();
+	 return  clientrepository.findById(id).getMissions();
  }
+ 
+ @CrossOrigin()
+	@GetMapping("/ClientAccount/{password}/{email}")
+	public List<Client>  indexCheck(@PathVariable String password,@PathVariable String email) {
+	 
+		return clientrepository.findByEmailAndPassword(email,password);
+
+	}
+    @CrossOrigin()
+	@GetMapping("/Clienttoken/{token}")
+	public Client  get(@PathVariable String token) {
+		
+		
+		return clientrepository.findByToken(token);
+	}
+
  
 }

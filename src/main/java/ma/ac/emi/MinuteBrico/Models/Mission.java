@@ -94,6 +94,7 @@ public class Mission {
 		private int zip_code;
 		private int bricoleur_choisi;
         private int idmission=0;
+        @JsonBackReference
         @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
 						 CascadeType.DETACH, CascadeType.REFRESH})
         @JoinColumn(name="Client_id")

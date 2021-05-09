@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -30,7 +31,7 @@ public class Client {
 	private String role;
 	private String token;
 	private String password;
-	
+	@JsonManagedReference
 @OneToMany(fetch=FetchType.EAGER,
 mappedBy="client",
 cascade= {CascadeType.PERSIST, CascadeType.MERGE,
