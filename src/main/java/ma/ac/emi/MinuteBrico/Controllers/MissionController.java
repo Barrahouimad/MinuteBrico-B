@@ -16,9 +16,11 @@ import ma.ac.emi.MinuteBrico.Services.BricoleurServices;
 
 import ma.ac.emi.MinuteBrico.Services.ClientServices;
 import ma.ac.emi.MinuteBrico.Services.MissionServices;
+import ma.ac.emi.MinuteBrico.Models.AccepterBrico;
 import ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 import ma.ac.emi.MinuteBrico.Models.Categorie;
 import ma.ac.emi.MinuteBrico.Models.Mission;
+import ma.ac.emi.MinuteBrico.Repositories.AccepterBricoRepository;
 
 @RestController
 public class MissionController {
@@ -32,6 +34,8 @@ public class MissionController {
 	
 	@Autowired
 	  private ClientServices ClientServices;
+	@Autowired
+    private   AccepterBricoRepository accepterBricoRepository;
 	
 	@CrossOrigin
 	@GetMapping("/missions")
@@ -83,8 +87,11 @@ public class MissionController {
 	@CrossOrigin()
 	@GetMapping("/bricoaumission/{bricoleurId}/{missionId}")
 	public String ajouter(@PathVariable int bricoleurId,@PathVariable int missionId) {
+		//ajouter une relation de postuler pour gérer l'acceptation
 		
-	     
+		AccepterBrico accepterbrico =new  AccepterBrico(bricoleurId,missionId);
+		accepterBricoRepository.save(accepterbrico);
+		
 		 BricoleurModel bricoleur =  bricoleurServices.findById(bricoleurId);
 		  ( missionService.findById(missionId)).addBrico(bricoleur);
 	

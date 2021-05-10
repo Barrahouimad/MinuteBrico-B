@@ -36,18 +36,19 @@ public class BricoleurModel{
 		private String photo ;
 		private String role;
 		private String token;
+	       @JsonBackReference
 		@OneToMany(cascade = CascadeType.ALL)
 		@JoinColumn(name = "Certification_Bricoleur",referencedColumnName = "id")
 		private List<Certification> certifications;
-		
+	       @JsonBackReference
 		@OneToMany(cascade = CascadeType.ALL)
 		@JoinColumn(name = "diplomes_Bricoleur",referencedColumnName = "id")
 		private List<Diplomes> diplomes;
-		
+	       @JsonBackReference
 		@OneToMany(cascade = CascadeType.ALL)
 		@JoinColumn(name = "langues_Bricoleur",referencedColumnName = "id")
 		private List<Langues> langues;
-		
+	       @JsonBackReference
 		@OneToMany(/*fetch = FetchType.LAZY , targetEntity = Category.class,*/ cascade = CascadeType.ALL)
 		@JoinColumn(name = "Category_Bricoleur",referencedColumnName = "id")
 		private List<Categorie> categorie ;
@@ -246,7 +247,6 @@ public class BricoleurModel{
 		this.domaine = domaine;
 	}
 	@JsonManagedReference
-
 	@ManyToMany
 	@JoinTable(
 			name="mission_brico",

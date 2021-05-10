@@ -128,9 +128,7 @@ public class BricoleurController {
 			b.setPhoto(body.getPhoto());
 			b.setFirstName(body.getFirstName());
 			b.setLastName(body.getLastName());
-			
-
-			return bricoservice.addBricoleur(b);
+		 return bricoservice.addBricoleur(b);
 	
 	}
 	@CrossOrigin()
