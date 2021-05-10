@@ -91,5 +91,13 @@ public class MissionController {
 		return  bricoleur.getFirstName() +  missionService.findById(missionId).getImages();
 
 	}
+	@CrossOrigin
+	@GetMapping("/Bricoofmissions/{id}")
+	public List<BricoleurModel> indexByIdBrico(@PathVariable String id){
+		int missionId = Integer.parseInt(id);
+		Mission mission =missionService.findById(missionId);
+		return  mission.getBricoleurs();
+	}
+	
 	
 }
