@@ -95,7 +95,7 @@ public class MissionController {
 		 BricoleurModel bricoleur =  bricoleurServices.findById(bricoleurId);
 		  ( missionService.findById(missionId)).addBrico(bricoleur);
 	
-		return  bricoleur.getFirstName() +  missionService.findById(missionId).getImages();
+		return  bricoleur.getFirstName() ;
 
 	}
 	@CrossOrigin
