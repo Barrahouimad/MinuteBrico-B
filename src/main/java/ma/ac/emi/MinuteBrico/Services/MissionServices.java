@@ -42,6 +42,11 @@ public class  MissionServices {
 		return true;
 	}
 
+	public void save(Mission findById) {
+		// TODO Auto-generated method stub
+		missionRepository.save(findById);
+	}
+
 
 	
 }

@@ -75,7 +75,7 @@ public class MissionController {
 		Mission mission = new Mission(missionMap);
 		Categorie cat;
 		
-		for(String titre : (List<String>) (missionMap).get("titre")) {
+		for(String titre : (List<String>) (missionMap).get("categorie")) {
 				cat =new Categorie(titre);
 				mission.add(cat);
 		}
@@ -94,7 +94,7 @@ public class MissionController {
 		
 		 BricoleurModel bricoleur =  bricoleurServices.findById(bricoleurId);
 		  ( missionService.findById(missionId)).addBrico(bricoleur);
-	
+		  missionService.save(  missionService.findById(missionId));
 		return  bricoleur.getFirstName() ;
 
 	}

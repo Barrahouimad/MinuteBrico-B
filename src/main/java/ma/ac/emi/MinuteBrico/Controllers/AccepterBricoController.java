@@ -49,6 +49,11 @@ public class AccepterBricoController {
         	 missionService.findById(missionid).setEtat_mission(1);
         	 MissionRepository.save(missionService.findById(missionid));
          }
+         if(accepterBrico.getBricoAccept()==0 && accepterBrico.getClientAccept()==1 )
+         {
+        	 missionService.findById(missionid).setEtat_mission(2);
+        	 MissionRepository.save(missionService.findById(missionid));
+         }
 		return "brico acceptes Mission  :"+ missionid;
 	}
 	
