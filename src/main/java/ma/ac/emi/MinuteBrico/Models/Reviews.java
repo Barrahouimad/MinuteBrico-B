@@ -1,5 +1,6 @@
 package ma.ac.emi.MinuteBrico.Models;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.persistence.Entity;
@@ -10,14 +11,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="reviews")
-public class Reviews {
+public class Reviews  implements Serializable  {
 
 	/**
 	 *@author iliass Alilou
 	 */
-	
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int  id;
 	private String userName_Client;
 	private int star ; 
@@ -30,6 +31,7 @@ public class Reviews {
 
 	public Reviews(String userName_Client, int star, String comment) {
 		super();
+		this.id=id;
 		this.userName_Client = userName_Client;
 		this.star = star;
 		this.comment = comment;

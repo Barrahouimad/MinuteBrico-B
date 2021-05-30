@@ -14,8 +14,9 @@ public class Langues {
 	public Langues() {
 		
 	}
-	public Langues(int id,String level,String langue) {
-		setId(id);
+	public Langues(String level,String langue) {
+		super();
+	
 		setLevel(level);
 		setLangue(langue);
 	}

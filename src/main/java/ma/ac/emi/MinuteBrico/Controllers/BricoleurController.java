@@ -82,10 +82,10 @@ public class BricoleurController {
 	}
 	@CrossOrigin()
 	@PutMapping("/bricoleurs/{id}")
-	public Reviews update(@PathVariable int id, @RequestBody Map<String, Object> body) {
-		/*	int bricoleurId = id;
+	public/* List<Reviews>*/ int update(@PathVariable int id, @RequestBody Map<String, Object> body) {
+			int bricoleurId = id;
 			BricoleurModel b = bricoservice.findById(bricoleurId);
-			 	b.setPhoto((String)  body.get("photo"));
+            b.setPhoto((String)  body.get("photo"));
 			b.setEmail((String)body.get("email"));
 			b.setPassword((String)body.get("password"));
 			b.setFirstName((String)body.get("firstName"));
@@ -98,7 +98,7 @@ public class BricoleurController {
 			
          //   b.setReviewsOnBrico((List<Reviews>) body.get("reviewsOnBrico"));
 			
-			for( int i=0 ; i<((List<Certification>) (body).get("reviewsOnBrico")).size() ; i++) {
+			for( int i=0 ; i<((List<Reviews>) (body).get("reviewsOnBrico")).size() ; i++) {
 				
 				Reviews exl = new Reviews((((List<Map<String, Object>>) (body).get("reviewsOnBrico")).get(i)));
 				
@@ -106,9 +106,9 @@ public class BricoleurController {
 
 			}
 			//Reviews exl = new Reviews((((List<Map<String, Object>>) (body).get("reviewsOnBrico")).get(0)));
-		//	b.addReview(exl);
-			bricoservice.addBricoleur(b);*/
-			return b.getReviewsOnBrico().get(0);
+			//b.addReview(exl);
+	         bricoservice.addBricoleur(b);
+			return b.getReviewsOnBrico().get(0).getId();
 		
 	
 	}	
