@@ -82,11 +82,10 @@ public class BricoleurController {
 	}
 	@CrossOrigin()
 	@PutMapping("/bricoleurs/{id}")
-	public BricoleurModel update(@PathVariable int id, @RequestBody Map<String, Object> body) {
-			int bricoleurId = id;
+	public Reviews update(@PathVariable int id, @RequestBody Map<String, Object> body) {
+		/*	int bricoleurId = id;
 			BricoleurModel b = bricoservice.findById(bricoleurId);
-
-			b.setPhoto((String)  body.get("photo"));
+			 	b.setPhoto((String)  body.get("photo"));
 			b.setEmail((String)body.get("email"));
 			b.setPassword((String)body.get("password"));
 			b.setFirstName((String)body.get("firstName"));
@@ -96,15 +95,20 @@ public class BricoleurController {
 			b.setAdresse((String)body.get("adresse"));
 			b.setToken((String)body.get("token"));
 			b.setDescriptionProfil((String)body.get("descriptionProfil"));
+			
+         //   b.setReviewsOnBrico((List<Reviews>) body.get("reviewsOnBrico"));
+			
+			for( int i=0 ; i<((List<Certification>) (body).get("reviewsOnBrico")).size() ; i++) {
+				
+				Reviews exl = new Reviews((((List<Map<String, Object>>) (body).get("reviewsOnBrico")).get(i)));
+				
+			    	b.addReview(exl);
 
-			b.setCategorie((List<Categorie> )body.get("categorie"));
-			b.setCertifications( (List<Certification> )body.get("certifications"));
-			b.setDiplomes((List<Diplomes> )body.get("diplomes"));
-			b.setLangues((List<Langues> )body.get("langues"));
-			b.setReviewsOnBrico((List<Reviews>  )body.get("reviewsOnBrico"));
-			b.setMissions((List<Mission> )body.get("missions"));
-		
-			return bricoservice.addBricoleur(b);
+			}
+			//Reviews exl = new Reviews((((List<Map<String, Object>>) (body).get("reviewsOnBrico")).get(0)));
+		//	b.addReview(exl);
+			bricoservice.addBricoleur(b);*/
+			return b.getReviewsOnBrico().get(0);
 		
 	
 	}	
@@ -135,14 +139,14 @@ public class BricoleurController {
 			bricoleur.addDiplomes(exl);
 
 		}
-	/*	for(int i=0;i<((List<Langues>) (bricoMap).get("Langues")).size();i++) {
+		for(int i=0;i<((List<Langues>) (bricoMap).get("Langues")).size();i++) {
 			
 			Langues exl = new Langues((((List<Map<String, Object>>) (bricoMap).get("Langues")).get(i)));
 			
 			bricoleur.addLangues(exl);
 
 		}
-		*/
+	
 	
 		bricoservice.addBricoleur(bricoleur);
 		return "Brico ajouté" ;
@@ -153,7 +157,6 @@ public class BricoleurController {
 	@PutMapping("/bricoleurup/{token}")
 	public BricoleurModel updateadd(@PathVariable String token, @RequestBody BricoleurModel body) {
 		BricoleurModel bricoleur = bricoservice.findByToken(token);
-
 			BricoleurModel b = bricoleur;
 			b.setPhoto(body.getPhoto());
 			b.setFirstName(body.getFirstName());

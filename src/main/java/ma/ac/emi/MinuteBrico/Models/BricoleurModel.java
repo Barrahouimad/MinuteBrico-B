@@ -342,6 +342,16 @@ public void addCertification(Certification brico) {
 		
 
 	}
+public void addReview(Reviews review) {
+	
+	if (reviewsOnBrico == null) {
+		reviewsOnBrico = new ArrayList<>();
+	}
+	
+	reviewsOnBrico.add(review);
+	
+
+}
 
 public void addCategorie(Categorie brico) {
 

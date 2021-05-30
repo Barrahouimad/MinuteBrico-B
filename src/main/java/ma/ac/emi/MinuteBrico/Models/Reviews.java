@@ -1,5 +1,7 @@
 package ma.ac.emi.MinuteBrico.Models;
 
+import java.util.Map;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +18,7 @@ public class Reviews {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long  id;
+	private int  id;
 	private String userName_Client;
 	private int star ; 
 	private String comment;
@@ -32,7 +34,18 @@ public class Reviews {
 		this.star = star;
 		this.comment = comment;
 	}
-
+	
+	
+	 public Reviews(Map<String,Object> ReviewsMap) {
+			if (ReviewsMap.get("id") != null)	
+				
+			this.id = (int )ReviewsMap.get("id");
+			this.userName_Client = (String) ReviewsMap.get("userName_Client");
+			this.star = (int) ReviewsMap.get("star");
+			this.comment = (String) ReviewsMap.get("comment");
+		
+			
+		}
 
 	public String getUserName_Client() {
 		return userName_Client;
@@ -42,23 +55,13 @@ public class Reviews {
 		this.userName_Client = userName_Client;
 	}
 
-	public Reviews (Reviews ReviewsMap) {
-		super();
 
-		if (ReviewsMap.getId() != null)
-			
-		this.id = (Long)ReviewsMap.getId();
-		this.userName_Client =(String)ReviewsMap.getUserName_Client();
-		this.star= (Integer) ReviewsMap.getStar();
-		this.comment = (String) ReviewsMap.getComment();
 	
-	}
-	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
