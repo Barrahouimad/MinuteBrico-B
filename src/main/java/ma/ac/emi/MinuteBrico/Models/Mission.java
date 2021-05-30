@@ -39,7 +39,7 @@ public class Mission {
 
 	
 	public Mission(int iDMission, String titre_mission, String state, String adresse, int etat_mission, String images,
-			String ville, int interval_temps, String mission_description,  Date date, int zip_code,
+			String ville, int interval_temps, String mission_description,  Date date, String zip_code,
 			int bricoleur_choisi, List<Categorie> categories, List<BricoleurModel> bricoleurs) {
 		this.id = iDMission;
 		this.titre_mission = titre_mission;
@@ -73,7 +73,7 @@ public class Mission {
 		this.adresse=(String) userMap.get("adresse");
 		this.etat_mission=(int) userMap.get("etat_mission");
 		this.images=(String) userMap.get("images");
-		this.zip_code=(int) userMap.get("zip_code");
+		this.zip_code=(String) userMap.get("zip_code");
 		this.date=(Date) userMap.get("date");
 		this.categories=(List<Categorie>) userMap.get("categories");
 
@@ -91,7 +91,7 @@ public class Mission {
 		private int interval_temps;
 		private String mission_description;
 		private Date date;
-		private int zip_code;
+		private String zip_code;
 		private int bricoleur_choisi;
         private int idmission=0;
         @JsonBackReference
@@ -313,14 +313,14 @@ public void setDate(Date date) {
 
 
 
-public int getZip_code() {
+public String getZip_code() {
 	return zip_code;
 }
 
 
 
 
-public void setZip_code(int zip_code) {
+public void setZip_code(String zip_code) {
 	this.zip_code = zip_code;
 }
 

@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+
 //modeliser la table et les données de chaque classe
 @Entity
 @Table(name="Bricoleur")
@@ -36,37 +37,40 @@ public class BricoleurModel{
 		private String photo ;
 		private String role;
 		private String token;
-	       @JsonBackReference
+		private String descriptionProfil;
+		private String adresse;
+		private String phone;
+		
+		
+	     
 		@OneToMany(cascade = CascadeType.ALL)
 		@JoinColumn(name = "Certification_Bricoleur",referencedColumnName = "id")
 		private List<Certification> certifications;
-	       @JsonBackReference
+	       
 		@OneToMany(cascade = CascadeType.ALL)
 		@JoinColumn(name = "diplomes_Bricoleur",referencedColumnName = "id")
 		private List<Diplomes> diplomes;
-	       @JsonBackReference
+	    
 		@OneToMany(cascade = CascadeType.ALL)
 		@JoinColumn(name = "langues_Bricoleur",referencedColumnName = "id")
 		private List<Langues> langues;
-	       @JsonBackReference
+
 		@OneToMany(/*fetch = FetchType.LAZY , targetEntity = Category.class,*/ cascade = CascadeType.ALL)
 		@JoinColumn(name = "Category_Bricoleur",referencedColumnName = "id")
 		private List<Categorie> categorie ;
 		
+		@OneToMany(cascade = CascadeType.ALL)
+		@JoinColumn(name = "reviews_Bricoleur",referencedColumnName = "id")
+		private List<Reviews> reviewsOnBrico;
 	
 		public BricoleurModel() {
 			
 		}
 		
-	
-
-
-
-		public BricoleurModel(int id, String password, Long clientId, String ville, String firstName, String lastName,
-				String email, String birthday, String photo, String role, String token,
-				List<Certification> certifications,
-				List<Diplomes> diplomes,
-				List<Langues> langues, List<Categorie> categorie, String domaine,
+	public BricoleurModel(int id, String password, Long clientId, String ville, String firstName, String lastName,
+				String email, String birthday, String photo, String role, String token, String descriptionProfil,
+				String adresse, String phone, List<Certification> certifications, List<Diplomes> diplomes,
+				List<Langues> langues, List<Categorie> categorie, List<Reviews> reviewsOnBrico, String domaine,
 				List<Mission> missions) {
 			this.id = id;
 			this.password = password;
@@ -79,13 +83,19 @@ public class BricoleurModel{
 			this.photo = photo;
 			this.role = role;
 			this.token = token;
+			this.descriptionProfil = descriptionProfil;
+			this.adresse = adresse;
+			this.phone = phone;
 			this.certifications = certifications;
 			this.diplomes = diplomes;
 			this.langues = langues;
 			this.categorie = categorie;
+			this.reviewsOnBrico = reviewsOnBrico;
 			this.domaine = domaine;
 			this.missions = missions;
 		}
+
+
 
 
 
@@ -109,15 +119,63 @@ public class BricoleurModel{
 			this.domaine =(String) bricoMap.get("domaine") ;
 			this.token =(String) bricoMap.get("token") ;
 			this.password =(String) bricoMap.get("password") ;
-			/*this.certifications =(List<Certification>) bricoMap.get("certifications") ;
-			this.diplomes =(List<Diplomes>) bricoMap.get("diplomes") ;
-			this.langues =(List<Langues>) bricoMap.get("langues") ;
-			this.categorie =(List<Categorie>) bricoMap.get("categorie") ;*/
-
+			this.descriptionProfil =(String) bricoMap.get("descriptionProfil") ;
+			this.phone =(String) bricoMap.get("phone") ;
+			this.adresse =(String) bricoMap.get("adresse") ;
+			/* this.certifications =(List<Certification>) bricoMap.get("certifications") ;
+			   this.diplomes =(List<Diplomes>) bricoMap.get("diplomes") ;
+			   this.langues =(List<Langues>) bricoMap.get("langues") ;
+			   this.categorie =(List<Categorie>) bricoMap.get("categorie") ;
+		       this.reviewsOnBrico =(List<Categorie>) bricoMap.get("reviewsOnBrico") */
 
 		}
 		
-	    public int getId() {
+		
+	    public String getDescriptionProfil() {
+			return descriptionProfil;
+		}
+
+
+
+		public String getAdresse() {
+			return adresse;
+		}
+
+
+
+
+
+		public void setAdresse(String adresse) {
+			this.adresse = adresse;
+		}
+
+
+
+
+
+		public List<Reviews> getReviewsOnBrico() {
+			return reviewsOnBrico;
+		}
+
+
+		public void setReviewsOnBrico(List<Reviews> reviewsOnBrico) {
+			this.reviewsOnBrico = reviewsOnBrico;
+		}
+
+
+		public void setDescriptionProfil(String descriptionProfil) {
+			this.descriptionProfil = descriptionProfil;
+		}
+
+		public String getPhone() {
+			return phone;
+		}
+
+		public void setPhone(String phone) {
+			this.phone = phone;
+		}
+
+		public int getId() {
 			return id;
 		}
 		public void setId(int id) {
@@ -129,16 +187,9 @@ public class BricoleurModel{
 			return categorie;
 		}
 
-
-
-
-
 		public void setCategorie(List<Categorie> categorie) {
 			this.categorie = categorie;
 		}
-
-
-
 
 
 		public List<Certification> getCertifications() {

@@ -57,13 +57,13 @@ public class MissionController {
 		Mission mission = new Mission(missionMap);
 		Categorie cat;
 		
-		for(String titre : (List<String>) (missionMap).get("titre")) {
+		for(String titre : (List<String>) (missionMap).get("categorie")) {
 				cat =new Categorie(titre);
 				mission.add(cat);
 		}
 		mission.missionAddClient(ClientServices.findById(id));
 		missionService.savemission(mission);
-		return  ((List<String>) (missionMap).get("titre")).size();
+		return  ((List<String>) (missionMap).get("categorie")).size();
 
 	}
 	

@@ -21,12 +21,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
+
 import ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 import ma.ac.emi.MinuteBrico.Models.Categorie;
 import ma.ac.emi.MinuteBrico.Models.Certification;
 import ma.ac.emi.MinuteBrico.Models.Diplomes;
 import ma.ac.emi.MinuteBrico.Models.Langues;
 import ma.ac.emi.MinuteBrico.Models.Mission;
+import ma.ac.emi.MinuteBrico.Models.Reviews;
 import  ma.ac.emi.MinuteBrico.Services.BricoleurServices;
 
 @RestController
@@ -78,6 +80,34 @@ public class BricoleurController {
 		return  "brico ajouté";
 
 	}
+	@CrossOrigin()
+	@PutMapping("/bricoleurs/{id}")
+	public BricoleurModel update(@PathVariable int id, @RequestBody Map<String, Object> body) {
+			int bricoleurId = id;
+			BricoleurModel b = bricoservice.findById(bricoleurId);
+
+			b.setPhoto((String)  body.get("photo"));
+			b.setEmail((String)body.get("email"));
+			b.setPassword((String)body.get("password"));
+			b.setFirstName((String)body.get("firstName"));
+			b.setLastName((String)body.get("lastName"));
+			b.setBirthday((String)body.get("birthday"));
+			b.setPhone((String)body.get("phone"));
+			b.setAdresse((String)body.get("adresse"));
+			b.setToken((String)body.get("token"));
+			b.setDescriptionProfil((String)body.get("descriptionProfil"));
+
+			b.setCategorie((List<Categorie> )body.get("categorie"));
+			b.setCertifications( (List<Certification> )body.get("certifications"));
+			b.setDiplomes((List<Diplomes> )body.get("diplomes"));
+			b.setLangues((List<Langues> )body.get("langues"));
+			b.setReviewsOnBrico((List<Reviews>  )body.get("reviewsOnBrico"));
+			b.setMissions((List<Mission> )body.get("missions"));
+		
+			return bricoservice.addBricoleur(b);
+		
+	
+	}	
 
 	@CrossOrigin()
 	@PostMapping("/bricoleurscertif")
