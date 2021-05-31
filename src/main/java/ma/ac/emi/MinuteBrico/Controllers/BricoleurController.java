@@ -85,7 +85,7 @@ public class BricoleurController {
 	public/* List<Reviews>*/ int update(@PathVariable int id, @RequestBody Map<String, Object> body) {
 			int bricoleurId = id;
 			BricoleurModel b = bricoservice.findById(bricoleurId);
-            b.setPhoto((String)  body.get("photo"));
+          /*  b.setPhoto((String)  body.get("photo"));
 			b.setEmail((String)body.get("email"));
 			b.setPassword((String)body.get("password"));
 			b.setFirstName((String)body.get("firstName"));
@@ -94,7 +94,7 @@ public class BricoleurController {
 			b.setPhone((String)body.get("phone"));
 			b.setAdresse((String)body.get("adresse"));
 			b.setToken((String)body.get("token"));
-			b.setDescriptionProfil((String)body.get("descriptionProfil"));
+			b.setDescriptionProfil((String)body.get("descriptionProfil"));*/
 			
          //   b.setReviewsOnBrico((List<Reviews>) body.get("reviewsOnBrico"));
 			
@@ -118,30 +118,30 @@ public class BricoleurController {
 	public String createwithcertif(@RequestBody Map<String, Object> bricoMap) {
 		BricoleurModel bricoleur = new BricoleurModel(bricoMap);		   
 		
-		for(int i=0;i<((List<Categorie>) (bricoMap).get("Categorie")).size();i++) {
+		for(int i=0;i<((List<Categorie>) (bricoMap).get("categorie")).size();i++) {
 				
-			Categorie exl = new Categorie((((List<Map<String, Object>>) (bricoMap).get("Categorie")).get(i)));
+			Categorie exl = new Categorie((((List<Map<String, Object>>) (bricoMap).get("categorie")).get(i)));
 			
 			bricoleur.addCategorie(exl);
 
 		}
-		for(int i=0;i<((List<Certification>) (bricoMap).get("Certification")).size();i++) {
+		for(int i=0;i<((List<Certification>) (bricoMap).get("certification")).size();i++) {
 			
-			Certification exl = new Certification((((List<Map<String, Object>>) (bricoMap).get("Certification")).get(i)));
+			Certification exl = new Certification((((List<Map<String, Object>>) (bricoMap).get("certification")).get(i)));
 			
 			bricoleur.addCertification(exl);
 
 		}
-		for(int i=0;i<((List<Diplomes>) (bricoMap).get("Diplomes")).size();i++) {
+		for(int i=0;i<((List<Diplomes>) (bricoMap).get("diplomes")).size();i++) {
 			
-			Diplomes exl = new Diplomes((((List<Map<String, Object>>) (bricoMap).get("Diplomes")).get(i)));
+			Diplomes exl = new Diplomes((((List<Map<String, Object>>) (bricoMap).get("diplomes")).get(i)));
 			
 			bricoleur.addDiplomes(exl);
 
 		}
-		for(int i=0;i<((List<Langues>) (bricoMap).get("Langues")).size();i++) {
+		for(int i=0;i<((List<Langues>) (bricoMap).get("langues")).size();i++) {
 			
-			Langues exl = new Langues((((List<Map<String, Object>>) (bricoMap).get("Langues")).get(i)));
+			Langues exl = new Langues((((List<Map<String, Object>>) (bricoMap).get("langues")).get(i)));
 			
 			bricoleur.addLangues(exl);
 

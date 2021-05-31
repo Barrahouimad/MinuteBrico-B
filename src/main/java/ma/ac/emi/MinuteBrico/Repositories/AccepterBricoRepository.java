@@ -8,4 +8,5 @@ public interface AccepterBricoRepository extends JpaRepository<AccepterBrico,Int
 
 	AccepterBrico findByBricoIdAndMissionId(int bricoId,int missionId);
 	
+	
 }
