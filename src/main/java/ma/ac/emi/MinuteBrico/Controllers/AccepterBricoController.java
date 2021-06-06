@@ -50,6 +50,22 @@ public class AccepterBricoController {
                   
                   return 0;
 		}   
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    @CrossOrigin()
+		@GetMapping("/accepterbricoall")
+		public List<AccepterBrico> indexx() {
+	
+		  
+			
+              return  acceptRepository.findAll();
+		}   
 	
 	@CrossOrigin()
 	@PutMapping("/ClientAccept/{bricoid}/{missionid}/{accept}")

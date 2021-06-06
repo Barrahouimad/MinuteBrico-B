@@ -91,7 +91,7 @@ public class MissionController {
 		
 		AccepterBrico accepterbrico =new  AccepterBrico(bricoleurId,missionId);
 		accepterBricoRepository.save(accepterbrico);
-		
+		  ( missionService.findById(missionId)).addAccepte(accepterbrico);
 		 BricoleurModel bricoleur =  bricoleurServices.findById(bricoleurId);
 		  ( missionService.findById(missionId)).addBrico(bricoleur);
 		  missionService.save(  missionService.findById(missionId));

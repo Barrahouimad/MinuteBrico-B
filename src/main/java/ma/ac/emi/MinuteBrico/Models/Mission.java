@@ -38,10 +38,16 @@ public class Mission {
 
 
 	
-	public Mission(int iDMission, String titre_mission, String state, String adresse, int etat_mission, String images,
-			String ville, int interval_temps, String mission_description,  Date date, String zip_code,
-			int bricoleur_choisi, List<Categorie> categories, List<BricoleurModel> bricoleurs) {
-		this.id = iDMission;
+	
+
+
+
+
+	public Mission(int id, String titre_mission, String state, String adresse, int etat_mission, String images,
+			String ville, int interval_temps, String mission_description, Date date, String zip_code,
+			int bricoleur_choisi, int idmission, Client client, List<Categorie> categories,
+			List<AccepterBrico> accepterBrico, List<BricoleurModel> bricoleurs) {
+		this.id = id;
 		this.titre_mission = titre_mission;
 		this.state = state;
 		this.adresse = adresse;
@@ -50,13 +56,20 @@ public class Mission {
 		this.ville = ville;
 		this.interval_temps = interval_temps;
 		this.mission_description = mission_description;
-
 		this.date = date;
 		this.zip_code = zip_code;
 		this.bricoleur_choisi = bricoleur_choisi;
+		this.idmission = idmission;
+		this.client = client;
 		this.categories = categories;
+		this.accepterBrico = accepterBrico;
 		this.bricoleurs = bricoleurs;
 	}
+
+
+
+
+
 
 
 
@@ -106,6 +119,12 @@ public class Mission {
 private List<Categorie> categories;
 
 
+@OneToMany(cascade=CascadeType.ALL)
+@JoinColumn(name="mission")
+private List<AccepterBrico> accepterBrico;
+
+
+
 @JsonBackReference
 @ManyToMany
 @JoinTable(
@@ -128,6 +147,18 @@ public void addBrico(BricoleurModel brico) {
 
 }	
 
+
+
+public void addAccepte(AccepterBrico accepterbrico) {
+	
+	if (accepterBrico == null) {
+		accepterBrico = new ArrayList<>();
+	}
+	
+	accepterBrico.add(accepterbrico);
+	
+
+}	
 
 public void add(Categorie cat) {
 	
@@ -178,6 +209,35 @@ public void setClient(Client client) {
 public String getTitre_mission() {
 	return titre_mission;
 }
+
+
+public int getIdmission() {
+	return idmission;
+}
+
+
+
+
+public void setIdmission(int idmission) {
+	this.idmission = idmission;
+}
+
+
+
+
+public List<AccepterBrico> getAccepterBrico() {
+	return accepterBrico;
+}
+
+
+
+
+public void setAccepterBrico(List<AccepterBrico> accepterBrico) {
+	this.accepterBrico = accepterBrico;
+}
+
+
+
 
 public List<BricoleurModel> getBricoleurs() {
 	return bricoleurs;
