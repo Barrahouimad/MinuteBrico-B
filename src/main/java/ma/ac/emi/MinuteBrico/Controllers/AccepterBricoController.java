@@ -89,10 +89,20 @@ public class AccepterBricoController {
          }
          if(accepterBrico.getBricoAccept()==0 && accepterBrico.getClientAccept()==1 )
          {
-        	 missionService.findById(missionid).setEtat_mission(2);
+        	 missionService.findById(missionid).setEtat_mission(0);
         	 MissionRepository.save(missionService.findById(missionid));
          }
 		return "brico acceptes Mission  :"+ missionid;
 	}
+	
+	@CrossOrigin()
+	@PutMapping("/etatmission/{id}")
+	public String etatMission(@PathVariable int id) {
+		
+		missionService.findById(id).setEtat_mission(2);
+		missionService.savemission(missionService.findById(id));
+		return "l'etat est bien modifié";
+	}
+	
 	
 }
