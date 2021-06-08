@@ -33,5 +33,16 @@ public class ClientServices {
 		return clientrepository.save(client);
 	}
 
-	
+	 
+	/* public boolean signUpUser(Client appUser) {
+	        boolean userExists = clientrepository
+	                .findByEmail1(appUser.getEmail())
+	                .isPresent();
+
+	        if (userExists) {
+	            return true;
+	        }
+	        return false;
+	 }
+	*/
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import ma.ac.emi.MinuteBrico.Models.BricoleurModel;
 import ma.ac.emi.MinuteBrico.Models.Client;
 import ma.ac.emi.MinuteBrico.Models.ClientAccount;
@@ -38,9 +39,16 @@ public class ClientController {
 @PostMapping("/Client")
  public String addClient(@RequestBody Map<String,Object> clientMap) {
 	 Client client=new Client(clientMap);
+	 String email = client.getEmail();
+	 //clientrepository.findByEmail(email);
+	 if(clientrepository.findByEmail(email).size() !=0) {
+		 return "existe";
+	 }
 	 clientrepository.save(client);
 	 return "Client Ajouté";
  }
+ 
+ 
  @CrossOrigin()	
  @GetMapping("/MissionClient/{id}")
  public List<Mission> showMissions(@PathVariable int id) {

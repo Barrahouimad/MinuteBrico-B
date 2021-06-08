@@ -14,10 +14,10 @@ public class Langues {
 	public Langues() {
 		
 	}
-	public Langues(String level,String langue) {
+	public Langues(/*String level,*/String langue) {
 		super();
 	
-		setLevel(level);
+		//setLevel(level);
 		setLangue(langue);
 	}
 	
@@ -25,7 +25,7 @@ public class Langues {
 			if (CategorieMap.get("id") != null)	
 				
 			this.id = (int )CategorieMap.get("id");
-			this.level = (String )CategorieMap.get("level");
+			//this.level = (String )CategorieMap.get("level");
 			this.langue = (String )CategorieMap.get("langue");
 
       }
@@ -33,20 +33,21 @@ public class Langues {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private String level;
+	//private String level;
 	private String langue;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getLevel() {
+	/*public String getLevel() {
 		return level;
 	}
 	public void setLevel(String level) {
 		this.level = level;
-	}
+	}*/
 	public String getLangue() {
 		return langue;
 	}
