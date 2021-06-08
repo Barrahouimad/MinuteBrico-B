@@ -52,7 +52,21 @@ public class BricoleurController {
 	}
 	@CrossOrigin()
 	@GetMapping("/bricoleursCheck/{email}/{password}")
-	public List<BricoleurModel> indexCheck(@PathVariable String password,@PathVariable String email) {
+	public List<BricoleurModel> indexCheck(@PathVariable String email, @PathVariable String password) {
+		
+		
+			if((bricoservice.findByEmailAndPassword(email,password).size()==0)) {
+				BricoleurModel brico = new BricoleurModel();
+				brico.setFirstName("Null");
+				List<BricoleurModel> list = bricoservice.findByEmailAndPassword(email,password) ;
+				list.add(brico);
+				
+				return list;
+				
+			}
+			  
+		
+	
 		
 		return bricoservice.findByEmailAndPassword(email,password);
 
@@ -155,15 +169,28 @@ public class BricoleurController {
 	
 	@CrossOrigin()
 	@PutMapping("/bricoleurup/{token}")
-	public BricoleurModel updateadd(@PathVariable String token, @RequestBody BricoleurModel body) {
-		BricoleurModel bricoleur = bricoservice.findByToken(token);
-			BricoleurModel b = bricoleur;
-			b.setPhoto(body.getPhoto());
-			b.setFirstName(body.getFirstName());
-			b.setLastName(body.getLastName());
-		 return bricoservice.addBricoleur(b);
+	public BricoleurModel updateadd(@PathVariable String token, @RequestBody Map<String, Object> body) {
+		    BricoleurModel bricoleur = bricoservice.findByToken(token);
+			//BricoleurModel b = bricoleur;
+			//b.setPhoto(body.getPhoto());
+		    bricoservice.findByToken(token).setFirstName((String) body.get("firstName"));
+		    bricoservice.findByToken(token).setLastName((String) body.get("lastName"));
+		    bricoservice.findByToken(token).setPhone((String) body.get("phone"));
+		 return bricoservice.addBricoleur(bricoservice.findByToken(token));
 	
 	}
+	
+	@CrossOrigin()
+	@PutMapping("/motdepasse/{token}")
+	public BricoleurModel updateaddpass(@PathVariable String token, @RequestBody Map<String, Object> body) {
+		    BricoleurModel bricoleur = bricoservice.findByToken(token);
+			//BricoleurModel b = bricoleur;
+			//b.setPhoto(body.getPhoto());
+		    bricoservice.findByToken(token).setPassword((String) body.get("password"));
+		    return bricoservice.addBricoleur(bricoservice.findByToken(token));
+	
+	}
+	
 	@CrossOrigin()
 	@GetMapping("/bricoleurtoken/{token}")
 	public BricoleurModel get(@PathVariable String token) {

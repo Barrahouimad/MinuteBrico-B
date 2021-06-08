@@ -42,7 +42,7 @@ public class BricoleurServices {
         	return bricoleurrepository.save(bricoleur);
         }
         
-        public List<BricoleurModel> findByEmailAndPassword(String password,String email) {
+        public List<BricoleurModel> findByEmailAndPassword(String email,String password) {
         	return bricoleurrepository.findByEmailAndPassword(email,password);
         }
 }

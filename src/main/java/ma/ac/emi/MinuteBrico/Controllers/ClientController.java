@@ -48,9 +48,20 @@ public class ClientController {
 	 return  clientrepository.findById(id).getMissions();
  }
  
- @CrossOrigin()
+    @CrossOrigin()
 	@GetMapping("/ClientAccount/{password}/{email}")
 	public List<Client>  indexCheck(@PathVariable String password,@PathVariable String email) {
+	                
+	 if((clientrepository.findByEmailAndPassword(email,password).size()==0)) {
+		   Client client = new Client();
+		   client.setFirstName("Null");
+			List<Client> list = clientrepository.findByEmailAndPassword(email,password) ;
+			list.add(client);
+			
+			return list;
+			
+		}
+	 
 	 
 		return clientrepository.findByEmailAndPassword(email,password);
 
